@@ -10,4 +10,10 @@ Group=ipfs
 StateDirectory=ipfs
 TimeoutStartSec=10800
 LimitNOFILE={{ ipfs_fd_max }}
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
 Environment="IPFS_PATH={{ ipfs_home }}/.ipfs"
