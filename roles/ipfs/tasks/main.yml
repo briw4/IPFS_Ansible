@@ -112,7 +112,7 @@
 - name: Build bootstrap list
   set_fact:
     ipfs_bootstrap_peers: []
-    
+
 - name: Add peers to bootstrap list
   set_fact:
     ipfs_bootstrap_peers: >-
@@ -126,3 +126,18 @@
       }}
   loop: "{{ groups['ipfs_cluster'] }}"
   when: item != inventory_hostname
+
+- name: deploy swarm.key
+  become: yes
+  become_user: ipfs
+
+  copy:
+    content: "{{ ipfs_swarm_key }}"
+    dest: "{{ ipfs_home }}/.ipfs/swarm.key"
+    owner: ipfs
+    group: ipfs
+    mode: 0400
+  notify: restart IPFS
+
+- debug:
+    var: ipfs_bootstrap_peers
