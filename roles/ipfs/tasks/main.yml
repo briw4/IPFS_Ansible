@@ -141,3 +141,18 @@
 
 - debug:
     var: ipfs_bootstrap_peers
+
+# --- config section ---
+
+- name: Configure IPFS Datastore options
+  become: yes
+  become_user: ipfs
+  command: "ipfs config Datastore.{{ item.key }} {{ item.value }} {{ '--json' if item.json | default(false) else '' }}"
+  environment:
+    IPFS_PATH: "{{ ipfs_home }}/.ipfs"
+  loop:
+    - { key: 'StorageMax', value: '"{{ ipfs_storage_max | default("60GB") }}"' }
+    - { key: 'StorageGCWatermark', value: "{{ ipfs_gc_watermark | default(90) }}", json: true }
+    - { key: 'BloomFilterSize', value: "{{ ipfs_bloom_filter_size | default(0) }}", json: true }
+    - { key: 'GCPeriod', value: '"{{ ipfs_gc_period | default("1h") }}"' }
+  notify: restart IPFS
