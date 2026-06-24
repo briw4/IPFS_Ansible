@@ -188,7 +188,7 @@
   environment:
     IPFS_PATH: "{{ ipfs_home }}/.ipfs"
   loop:
-    - { key: 'Discovery.MDNS.Enabled', value: 'false' }
+    - { key: 'Discovery.MDNS.Enabled', value: "{{ ipfs_discovery | bool }}" }
     - { key: 'Swarm.ConnMgr.LowWater', value: "{{ ipfs_connmgr_low_water | default(100) }}" }
     - { key: 'Swarm.ConnMgr.HighWater', value: "{{ ipfs_connmgr_high_water | default(400) }}" }
   notify: restart IPFS
