@@ -221,3 +221,11 @@
     IPFS_PATH: "{{ ipfs_home }}/.ipfs"
   notify: restart IPFS
 # ---End of config section---
+- name: set version file
+  become: yes
+  copy:
+    content: "{{ ipfs_version }}"
+    dest: "{{ ipfs_home }}/ipfs_deployed_version"
+    mode: 0644
+    owner: ipfs
+    group: ipfs
