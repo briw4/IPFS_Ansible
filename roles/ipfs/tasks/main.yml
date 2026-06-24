@@ -192,3 +192,17 @@
     - { key: 'Swarm.ConnMgr.LowWater', value: "{{ ipfs_connmgr_low_water | default(100) }}" }
     - { key: 'Swarm.ConnMgr.HighWater', value: "{{ ipfs_connmgr_high_water | default(400) }}" }
   notify: restart IPFS
+
+- name: Configure Bootstrap
+  become: yes
+  become_user: ipfs
+  command:
+    argv:
+      - ipfs
+      - config
+      - Bootstrap
+      - "{{ ipfs_bootstrap_peers | to_json }}"
+      - --json
+  environment:
+    IPFS_PATH: "{{ ipfs_home }}/.ipfs"
+  notify: restart IPFS
