@@ -95,3 +95,12 @@
     creates: "{{ ipfs_home }}/.ipfs/config"
   environment:
     IPFS_PATH: "{{ ipfs_home }}/.ipfs"
+
+- name: Get IPFS Peer ID
+  become: yes
+  become_user: ipfs
+  command: ipfs id
+  register: ipfs_peer_id_output
+  changed_when: false
+  environment:
+    IPFS_PATH: "{{ ipfs_home }}/.ipfs"
