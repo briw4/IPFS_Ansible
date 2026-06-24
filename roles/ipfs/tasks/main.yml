@@ -64,3 +64,11 @@
   file:
     path: /usr/local/bin/ipfs
     state: absent
+
+- name: link kubo executable
+  become: yes
+  file:
+    state: link
+    dest: /usr/local/bin/ipfs
+    src: /opt/kubo/{{ ipfs_version }}/kubo/ipfs
+  notify: restart IPFS
