@@ -23,3 +23,10 @@ ReadWritePaths={{ ipfs_home }}
 Environment="IPFS_FD_MAX={{ ipfs_fd_max }}"
 Environment="IPFS_PATH={{ ipfs_home }}/.ipfs"
 ExecStart=/usr/local/bin/ipfs daemon --migrate{%- if ipfs_enable_gc | default(False) %} --enable-gc{% endif %}
+
+Restart=on-failure
+RestartSec=5s
+KillSignal=SIGINT
+
+[Install]
+WantedBy=multi-user.target
