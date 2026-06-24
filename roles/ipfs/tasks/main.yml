@@ -206,3 +206,18 @@
   environment:
     IPFS_PATH: "{{ ipfs_home }}/.ipfs"
   notify: restart IPFS
+
+  - name: Allow LAN networking for IPFS cluster
+  become: yes
+  become_user: ipfs
+  command:
+    argv:
+      - ipfs
+      - config
+      - Swarm.AddrFilters
+      - "[]"
+      - --json
+  environment:
+    IPFS_PATH: "{{ ipfs_home }}/.ipfs"
+  notify: restart IPFS
+# ---End of config section---
