@@ -4,3 +4,9 @@
     name: acl
     state: present
     update_cache: yes
+    
+- name: make ipfs group
+  become: yes
+  group:
+    state: present
+    name: ipfs
