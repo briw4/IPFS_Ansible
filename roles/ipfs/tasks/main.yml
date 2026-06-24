@@ -40,3 +40,21 @@
     group: root
     mode: 0755
     dest: /opt/kubo/{{ ipfs_version }}
+
+- name: download and unpack IPFS
+  when: not ansible_check_mode
+  block:
+    - name: download IPFS
+      become: yes
+      get_url:
+        url: "{{ dist_url }}/kubo/{{ ipfs_version }}/kubo_{{ ipfs_version }}_linux-{{ ipfs_arch }}.tar.gz"
+        dest: /opt/kubo/{{ ipfs_version }}/kubo.tar.gz
+        timeout: 30
+
+    - name: unpack kubo
+      become: yes
+      unarchive:
+        remote_src: yes
+        src: /opt/kubo/{{ ipfs_version }}/kubo.tar.gz
+        dest: /opt/kubo/{{ ipfs_version }}
+        creates: /opt/kubo/{{ ipfs_version }}/kubo/ipfs
