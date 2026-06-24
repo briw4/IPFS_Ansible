@@ -72,3 +72,17 @@
     dest: /usr/local/bin/ipfs
     src: /opt/kubo/{{ ipfs_version }}/kubo/ipfs
   notify: restart IPFS
+
+- name: install ipfs systemd service
+  become: yes
+  template:
+    src: ipfs.service
+    dest: /etc/systemd/system/ipfs.service
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - reload systemd
+    - restart IPFS
+  tags:
+    - init
