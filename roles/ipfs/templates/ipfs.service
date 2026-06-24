@@ -19,4 +19,5 @@ ProtectHome=yes
 PrivateTmp=yes
 ProtectKernelTunables=yes
 ProtectKernelModules=yes
+ReadWritePaths={{ ipfs_home }}
 Environment="IPFS_PATH={{ ipfs_home }}/.ipfs"
