@@ -31,3 +31,12 @@
     group: ipfs
     mode: "0750"
     dest: "{{ ipfs_home }}/.ipfs"
+
+- name: create download folder for kubo
+  become: yes
+  file:
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+    dest: /opt/kubo/{{ ipfs_version }}
