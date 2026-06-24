@@ -104,3 +104,11 @@
   changed_when: false
   environment:
     IPFS_PATH: "{{ ipfs_home }}/.ipfs"
+  
+- name: Set peer ID fact
+  set_fact:
+    ipfs_peer_id: "{{ (ipfs_peer_id_output.stdout | from_json).ID }}"
+
+- name: Build bootstrap list
+  set_fact:
+    ipfs_bootstrap_peers: []
