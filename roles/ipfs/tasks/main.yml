@@ -1,0 +1,6 @@
+- name: Ensure acl package is installed
+  become: yes
+  apt:
+    name: acl
+    state: present
+    update_cache: yes
