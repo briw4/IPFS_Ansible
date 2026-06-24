@@ -180,3 +180,15 @@
     - { key: 'AutoTLS.Enabled', value: false }
     - { key: 'Routing.Type', value: "dht" }
   notify: restart IPFS
+
+- name: Configure IPFS Discovery and ConnMgr
+  become: yes
+  become_user: ipfs
+  command: "ipfs config {{ item.key }} {{ item.value }} --json"
+  environment:
+    IPFS_PATH: "{{ ipfs_home }}/.ipfs"
+  loop:
+    - { key: 'Discovery.MDNS.Enabled', value: 'false' }
+    - { key: 'Swarm.ConnMgr.LowWater', value: "{{ ipfs_connmgr_low_water | default(100) }}" }
+    - { key: 'Swarm.ConnMgr.HighWater', value: "{{ ipfs_connmgr_high_water | default(400) }}" }
+  notify: restart IPFS
