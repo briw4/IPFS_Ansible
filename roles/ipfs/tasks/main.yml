@@ -58,3 +58,9 @@
         src: /opt/kubo/{{ ipfs_version }}/kubo.tar.gz
         dest: /opt/kubo/{{ ipfs_version }}
         creates: /opt/kubo/{{ ipfs_version }}/kubo/ipfs
+
+- name: Remove existing ipfs binary
+  become: yes
+  file:
+    path: /usr/local/bin/ipfs
+    state: absent
