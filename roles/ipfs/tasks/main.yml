@@ -22,3 +22,12 @@
     create_home: no         
     comment: IPFS user
     system: yes
+
+- name: create ipfs data directory
+  become: yes
+  file:
+    state: directory
+    owner: ipfs
+    group: ipfs
+    mode: "0750"
+    dest: "{{ ipfs_home }}/.ipfs"
