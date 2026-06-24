@@ -4,9 +4,21 @@
     name: acl
     state: present
     update_cache: yes
-    
+
 - name: make ipfs group
   become: yes
   group:
     state: present
     name: ipfs
+
+- name: make ipfs user
+  become: yes
+  user:
+    state: present
+    name: ipfs
+    group: ipfs
+    shell: /bin/false
+    home: "{{ ipfs_home }}" # /var/lib/ipfs
+    create_home: no         
+    comment: IPFS user
+    system: yes
