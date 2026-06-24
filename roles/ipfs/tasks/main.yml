@@ -112,3 +112,17 @@
 - name: Build bootstrap list
   set_fact:
     ipfs_bootstrap_peers: []
+    
+- name: Add peers to bootstrap list
+  set_fact:
+    ipfs_bootstrap_peers: >-
+      {{
+        ipfs_bootstrap_peers +
+        [
+          '/ip4/' ~ hostvars[item].ansible_host
+          ~ '/tcp/4001/p2p/'
+          ~ hostvars[item].ipfs_peer_id
+        ]
+      }}
+  loop: "{{ groups['ipfs_cluster'] }}"
+  when: item != inventory_hostname
