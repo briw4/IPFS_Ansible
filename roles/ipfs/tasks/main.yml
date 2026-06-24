@@ -86,3 +86,12 @@
     - restart IPFS
   tags:
     - init
+
+- name: init IPFS
+  become: yes
+  become_user: ipfs
+  command: ipfs init --profile=server
+  args:
+    creates: "{{ ipfs_home }}/.ipfs/config"
+  environment:
+    IPFS_PATH: "{{ ipfs_home }}/.ipfs"
