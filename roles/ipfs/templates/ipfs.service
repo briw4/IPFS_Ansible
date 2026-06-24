@@ -8,3 +8,6 @@ Type=notify
 User=ipfs
 Group=ipfs
 StateDirectory=ipfs
+TimeoutStartSec=10800
+LimitNOFILE={{ ipfs_fd_max }}
+Environment="IPFS_PATH={{ ipfs_home }}/.ipfs"
