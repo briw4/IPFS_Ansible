@@ -229,3 +229,11 @@
     mode: 0644
     owner: ipfs
     group: ipfs
+
+- name: enable and start IPFS
+  become: yes
+  ansible.builtin.systemd:
+    name: ipfs
+    state: started
+    enabled: yes
+    daemon_reload: yes
