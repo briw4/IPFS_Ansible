@@ -2,3 +2,6 @@ dist_url: https://dist.ipfs.io
 ipfs_version: v0.41.0
 ipfs_arch: amd64
 ipfs_home: /var/lib/ipfs
+ipfs_fd_max: 4092 # max number of simultaneous network connections and open files
+ipfs_enable_gc: false
+ipfs_bootstrap_peers: []
