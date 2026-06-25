@@ -58,3 +58,15 @@
     owner: ipfs
     group: ipfs
     dest: "{{ ipfs_home }}/.ipfs-cluster"
+
+- name: install ipfs-cluster systemd service
+  become: yes
+  template:
+    src: ipfs-cluster.service
+    dest: /etc/systemd/system/ipfs-cluster.service
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - reload systemd
+    - restart IPFS Cluster
