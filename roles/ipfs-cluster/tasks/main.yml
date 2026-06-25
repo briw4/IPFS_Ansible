@@ -19,3 +19,13 @@
       loop:
         - ipfs-cluster-service
         - ipfs-cluster-ctl
+   -  name: unpack IPFS Cluster binaries
+      become: yes
+      unarchive:
+        remote_src: yes
+        src: /opt/ipfs-cluster/{{ ipfs_cluster_version }}/{{ item }}.tar.gz
+        dest: /opt/ipfs-cluster/{{ ipfs_cluster_version }}/
+        creates: /opt/ipfs-cluster/{{ ipfs_cluster_version }}/{{ item }}/{{ item }}
+      loop:
+        - ipfs-cluster-service
+        - ipfs-cluster-ctl
