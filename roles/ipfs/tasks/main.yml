@@ -117,7 +117,7 @@
   set_fact:
     ipfs_bootstrap_peers: >-
       {{
-        ipfs_bootstrap_peers +
+        (ipfs_bootstrap_peers | default([]))
         [
           '/ip4/' ~ hostvars[item].ansible_host
           ~ '/tcp/4001/p2p/'
@@ -125,7 +125,9 @@
         ]
       }}
   loop: "{{ groups['ipfs_cluster'] }}"
-  when: item != inventory_hostname
+  when: 
+    - item != inventory_hostname #skip if the host is itself
+    - hostvars[item].ipfs_peer_id is defined #skip if peer ID is not yet defined for the host
 
 - name: deploy swarm.key
   become: yes
