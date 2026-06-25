@@ -1,0 +1,5 @@
+{% for host in groups['ipfs_cluster'] %}
+{% if hostvars[host]['ipfs_cluster_peer_addr'] is defined and host != inventory_hostname %}
+{{ hostvars[host]['ipfs_cluster_peer_addr'] }}
+{% endif %}
+{% endfor %}
