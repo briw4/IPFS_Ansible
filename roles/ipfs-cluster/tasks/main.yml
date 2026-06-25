@@ -85,3 +85,7 @@
   slurp:
     src: "{{ ipfs_home }}/.ipfs-cluster/identity.json"
   register: ipfs_cluster_identity_raw
+
+- name: set IPFS Cluster peer ID fact
+  set_fact:
+    ipfs_cluster_peer_id: "{{ (ipfs_cluster_identity_raw.content | b64decode | from_json).id }}"
