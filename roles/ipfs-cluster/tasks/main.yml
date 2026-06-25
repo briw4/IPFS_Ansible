@@ -39,3 +39,13 @@
     - ipfs-cluster-ctl
   become: yes
   
+  - name: link ipfs-cluster executables
+  become: yes
+  file:
+    state: link
+    dest: /usr/local/bin/{{ item }}
+    src: /opt/ipfs-cluster/{{ ipfs_cluster_version }}/{{ item }}/{{ item }}
+  loop:
+    - ipfs-cluster-service
+    - ipfs-cluster-ctl
+  notify: restart IPFS Cluster
