@@ -98,3 +98,7 @@
     mode: 0644
     owner: ipfs
     group: ipfs
+
+- name: set IPFS Cluster peer addr fact
+  set_fact:
+    ipfs_cluster_peer_addr: "/ip4/{{ ansible_host }}/tcp/9096/p2p/{{ ipfs_cluster_peer_id }}"
