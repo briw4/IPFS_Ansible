@@ -1,3 +1,6 @@
 [Unit]
 Description=IPFS Cluster Service
 After=network.target
+
+[Service]
+LimitNOFILE={{ ipfs_cluster_fd_max }}
