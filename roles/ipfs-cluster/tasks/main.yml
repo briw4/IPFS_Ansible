@@ -79,3 +79,9 @@
     creates: "{{ ipfs_home }}/.ipfs-cluster/identity.json"
   environment:
     CLUSTER_PATH: "{{ ipfs_home }}/.ipfs-cluster"
+
+- name: get IPFS Cluster peer ID
+  become: yes
+  slurp:
+    src: "{{ ipfs_home }}/.ipfs-cluster/identity.json"
+  register: ipfs_cluster_identity_raw
