@@ -6,3 +6,16 @@
     group: root
     mode: 0755
     dest: /opt/ipfs-cluster/{{ ipfs_cluster_version }}
+
+- name: download and unpack IPFS Cluster
+  when: not ansible_check_mode
+  block:
+    - name: download IPFS Cluster binaries
+      become: yes
+      get_url:
+        url: "{{ dist_url }}/{{ item }}/{{ ipfs_cluster_version }}/{{ item }}_{{ ipfs_cluster_version }}_linux-{{ ipfs_cluster_arch }}.tar.gz"
+        dest: /opt/ipfs-cluster/{{ ipfs_cluster_version }}/{{ item }}.tar.gz
+        timeout: 30
+      loop:
+        - ipfs-cluster-service
+        - ipfs-cluster-ctl
