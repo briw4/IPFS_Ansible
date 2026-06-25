@@ -39,7 +39,7 @@
     - ipfs-cluster-ctl
   become: yes
   
-  - name: link ipfs-cluster executables
+- name: link ipfs-cluster executables
   become: yes
   file:
     state: link
@@ -49,3 +49,12 @@
     - ipfs-cluster-service
     - ipfs-cluster-ctl
   notify: restart IPFS Cluster
+
+- name: make .ipfs-cluster directory
+  become: yes
+  file:
+    state: directory
+    mode: 0700
+    owner: ipfs
+    group: ipfs
+    dest: "{{ ipfs_home }}/.ipfs-cluster"
