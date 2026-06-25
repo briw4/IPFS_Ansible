@@ -29,3 +29,13 @@
       loop:
         - ipfs-cluster-service
         - ipfs-cluster-ctl
+
+- name: remove existing cluster binaries
+  file:
+    path: /usr/local/bin/{{ item }}
+    state: absent
+  loop:
+    - ipfs-cluster-service
+    - ipfs-cluster-ctl
+  become: yes
+  
