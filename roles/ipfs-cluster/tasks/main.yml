@@ -1,0 +1,8 @@
+- name: create download folder for ipfs-cluster
+  become: yes
+  file:
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+    dest: /opt/ipfs-cluster/{{ ipfs_cluster_version }}
