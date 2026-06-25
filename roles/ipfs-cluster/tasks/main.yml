@@ -70,3 +70,12 @@
   notify:
     - reload systemd
     - restart IPFS Cluster
+
+- name: init IPFS Cluster
+  become: yes
+  become_user: ipfs
+  command: ipfs-cluster-service init --consensus crdt
+  args:
+    creates: "{{ ipfs_home }}/.ipfs-cluster/identity.json"
+  environment:
+    CLUSTER_PATH: "{{ ipfs_home }}/.ipfs-cluster"
