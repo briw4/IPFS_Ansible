@@ -1,0 +1,45 @@
+{
+  "cluster": {
+    "peername": "{{ inventory_hostname }}",
+    "secret": "{{ ipfs_cluster_secret }}",
+    "leave_on_shutdown": false,
+    "listen_multiaddress": [
+      "/ip4/0.0.0.0/tcp/9096",
+      "/ip4/0.0.0.0/udp/9096/quic"
+    ],
+    "announce_multiaddress": [],
+    "no_announce_multiaddress": [],
+    "enable_relay_hop": false,
+    "connection_manager": {
+      "high_water": 400,
+      "low_water": 100,
+      "grace_period": "2m0s"
+    },
+    "resource_manager": {
+      "enabled": true,
+      "memory_limit_bytes": 0,
+      "file_descriptors_limit": 0
+    },
+    "dial_peer_timeout": "3s",
+    "state_sync_interval": "5m0s",
+    "pin_recover_interval": "12m0s",
+    "replication_factor_min": {{ ipfs_cluster_replication_factor_min | default(-1) | int }},
+    "replication_factor_max": {{ ipfs_cluster_replication_factor_max | default(-1) | int }},
+    "monitor_ping_interval": "15s",
+    "peer_watch_interval": "5s",
+    "mdns_interval": "0s",
+    "disable_repinning": true,
+    "follower_mode": false,
+    "peer_addresses": [
+            {% set peers = [] %}
+            {% for host in groups['ipfs_cluster'] %}
+            {% if hostvars[host]['ipfs_cluster_peer_addr'] is defined %}
+            {% set _ = peers.append(hostvars[host]['ipfs_cluster_peer_addr']) %}
+            {% endif %}
+            {% endfor %}
+            {% for peer in peers %}
+                "{{ peer }}"{% if not loop.last %},{% endif %}
+            {% endfor %}
+            ]
+  }
+}
