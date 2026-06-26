@@ -150,5 +150,33 @@
       "sampling_prob": 0.3,
       "service_name": "cluster-daemon"
     }
+  },
+  "datastore": {
+    "pebble": {
+      "pebble_options": {
+        "cache_size_bytes": 1073741824,
+        "bytes_per_sync": 1048576,
+        "disable_wal": false,
+        "flush_split_bytes": 4194304,
+        "l0_compaction_file_threshold": 750,
+        "l0_compaction_threshold": 4,
+        "l0_stop_writes_threshold": 12,
+        "l_base_max_bytes": 134217728,
+        "max_open_files": 1000,
+        "mem_table_size": 67108864,
+        "mem_table_stop_writes_threshold": 20,
+        "read_only": false,
+        "wal_bytes_per_sync": 0,
+        "levels": [
+          { "block_restart_interval": 16, "block_size": 4096, "block_size_threshold": 90, "compression": 1, "filter_policy": 10, "target_file_size": 4194304 },
+          { "block_restart_interval": 16, "block_size": 4096, "block_size_threshold": 90, "compression": 1, "filter_policy": 10, "target_file_size": 8388608 },
+          { "block_restart_interval": 16, "block_size": 4096, "block_size_threshold": 90, "compression": 1, "filter_policy": 10, "target_file_size": 16777216 },
+          { "block_restart_interval": 16, "block_size": 4096, "block_size_threshold": 90, "compression": 1, "filter_policy": 10, "target_file_size": 33554432 },
+          { "block_restart_interval": 16, "block_size": 4096, "block_size_threshold": 90, "compression": 1, "filter_policy": 10, "target_file_size": 67108864 },
+          { "block_restart_interval": 16, "block_size": 4096, "block_size_threshold": 90, "compression": 1, "filter_policy": 10, "target_file_size": 134217728 },
+          { "block_restart_interval": 16, "block_size": 4096, "block_size_threshold": 90, "compression": 1, "filter_policy": 10, "target_file_size": 268435456 }         
+        ]
+      }
+    }
   }
 }
