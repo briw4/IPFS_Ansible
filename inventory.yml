@@ -1,0 +1,12 @@
+ipfs_cluster:
+  hosts:
+    node0:
+      ansible_host: 192.168.1.10
+    node1:
+      ansible_host: 192.168.1.11
+    node2:
+      ansible_host: 192.168.1.12
+    node3:
+      ansible_host: 192.168.1.13
+ 
+
