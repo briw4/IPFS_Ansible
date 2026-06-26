@@ -1,0 +1,10 @@
+dist_url: https://dist.ipfs.tech
+ipfs_version: v0.41.0
+ipfs_arch: amd64
+ipfs_home: /var/lib/ipfs
+ipfs_fd_max: 4092 # max number of simultaneous network connections and open files
+ipfs_enable_gc: false
+ipfs_swarm_key: "{{ vault_ipfs_swarm_key }}"
+ipfs_discovery: false  # disabled mDNS
+ipfs_connmgr_low_water: 100
+ipfs_connmgr_high_water: 400
