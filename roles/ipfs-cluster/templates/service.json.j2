@@ -110,5 +110,26 @@
       "priority_pin_max_age": "24h0m0s",
       "priority_pin_max_retries": 5
     }
+  },
+  "allocator": {
+    "balanced": {
+      "allocate_by": ["tag:group", "freespace"]
+    }
+  },
+  "informer": {
+    "disk": {
+      "metric_ttl": "30s",
+      "metric_type": "freespace"
+    },
+    "pinqueue": {
+      "metric_ttl": "30s",
+      "weight_bucket_size": 100000
+    },
+    "tags": {
+      "metric_ttl": "30s",
+      "tags": {
+        "group": "{{ ipfs_cluster_group_tag | default('default') }}"
+      }
+    }
   }
 }
