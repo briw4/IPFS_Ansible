@@ -62,5 +62,34 @@
       },
       "repair_interval": "1h0m0s"
     }
+  },
+  "api": {
+    "ipfsproxy": {
+      "listen_multiaddress": "/ip4/127.0.0.1/tcp/9095",
+      "node_multiaddress": "/ip4/127.0.0.1/tcp/5001",
+      "log_file": "",
+      "read_timeout": "0s",
+      "read_header_timeout": "5s",
+      "write_timeout": "0s",
+      "idle_timeout": "1m0s",
+      "max_header_bytes": 4096
+    },
+    "restapi": {
+      "http_listen_multiaddress": "/ip4/127.0.0.1/tcp/9094",
+      "read_timeout": "0s",
+      "read_header_timeout": "5s",
+      "write_timeout": "0s",
+      "idle_timeout": "2m0s",
+      "max_header_bytes": 4096,
+      "basic_auth_credentials": null,
+      "http_log_file": "",
+      "headers": {},
+      "cors_allowed_origins": [],
+      "cors_allowed_methods": ["GET"],
+      "cors_allowed_headers": [],
+      "cors_exposed_headers": ["Content-Type", "X-Stream-Output", "X-Chunked-Output", "X-Content-Length"],
+      "cors_allow_credentials": false,
+      "cors_max_age": "0s"
+    }
   }
 }
