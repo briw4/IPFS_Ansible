@@ -111,6 +111,12 @@
       "priority_pin_max_retries": 5
     }
   },
+  "monitor": {
+    "pubsubmon": {
+      "check_interval": "15s",
+      "failure_threshold": 3
+    }
+  },
   "allocator": {
     "balanced": {
       "allocate_by": ["tag:group", "freespace"]
@@ -130,6 +136,19 @@
       "tags": {
         "group": "{{ ipfs_cluster_group_tag | default('default') }}"
       }
+    }
+  },
+  "observations": {
+    "metrics": {
+      "enable_stats": {{ ipfs_cluster_enable_stats | default(true) | bool | lower }},
+      "prometheus_endpoint": "/ip4/0.0.0.0/tcp/8888",
+      "reporting_interval": "30s"
+    },
+    "tracing": {
+      "enable_tracing": false,
+      "jaeger_agent_endpoint": "/ip4/127.0.0.1/udp/6831",
+      "sampling_prob": 0.3,
+      "service_name": "cluster-daemon"
     }
   }
 }
