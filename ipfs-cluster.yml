@@ -1,0 +1,6 @@
+- hosts: ipfs_cluster
+  vars_files:
+    - group_vars/ipfs_cluster.yml
+    - group_vars/ipfs.yml
+  roles:
+    - ipfs-cluster
