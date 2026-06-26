@@ -1,6 +1,8 @@
 - hosts: ipfs_cluster
   vars_files:
-    - group_vars/ipfs_cluster.yml
-    - group_vars/ipfs.yml
+    - group_vars/ipfs-cluster/ipfs-cluster.yml
+    - group_vars/ipfs/vault.yml
+    - group_vars/ipfs/ipfs.yml
+    - group_vars/ipfs-cluster/vault.yml
   roles:
     - ipfs
