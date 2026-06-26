@@ -19,7 +19,7 @@
       loop:
         - ipfs-cluster-service
         - ipfs-cluster-ctl
-   -  name: unpack IPFS Cluster binaries
+    - name: unpack IPFS Cluster binaries
       become: yes
       unarchive:
         remote_src: yes
@@ -102,3 +102,12 @@
 - name: set IPFS Cluster peer addr fact
   set_fact:
     ipfs_cluster_peer_addr: "/ip4/{{ ansible_host }}/tcp/9096/p2p/{{ ipfs_cluster_peer_id }}"
+
+- name: Deploy IPFS Cluster service.json configuration
+  template:
+    src: service.json.j2
+    dest: "{{ ipfs_home }}/.ipfs-cluster/service.json"
+    owner: ipfs
+    group: ipfs
+    mode: "0600"
+  notify: restart ipfs-cluster
