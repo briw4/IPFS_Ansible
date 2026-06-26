@@ -1,4 +1,9 @@
 # IPFS & IPFS Cluster Ansible
+![Ansible](https://img.shields.io/badge/Ansible-Automation-red)
+![License](https://img.shields.io/badge/License-MIT-yellow.svg)
+![IPFS](https://img.shields.io/badge/IPFS-Kubo-blue)
+![IPFS Cluster](https://img.shields.io/badge/IPFS%20Cluster-Pinning-orange)
+![Private IPFS](https://img.shields.io/badge/Network-Private-success)
 
 Automated deployment and configuration of a private IPFS network and IPFS Cluster using Ansible.
 ## Features
