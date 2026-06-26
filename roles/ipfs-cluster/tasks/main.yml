@@ -105,9 +105,21 @@
 
 - name: Deploy IPFS Cluster service.json configuration
   become: yes
+  become_user: ipfs
   template:
     src: service.json.j2
     dest: "{{ ipfs_home }}/.ipfs-cluster/service.json"
+    owner: ipfs
+    group: ipfs
+    mode: "0600"
+  notify: restart IPFS Cluster
+
+- name: deploy peerstore
+  become: yes
+  become_user: ipfs
+  template:
+    src: peerstore
+    dest: "{{ ipfs_home }}/.ipfs-cluster/peerstore"
     owner: ipfs
     group: ipfs
     mode: "0600"
