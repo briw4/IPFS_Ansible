@@ -1,0 +1,1 @@
+vault_ipfs_swarm_key: #copy paste the output of this command ----> ansible-vault encrypt_string --vault-id ipfs_dev@prompt '<swarm_key>' --name 'ipfs_swarm_key'

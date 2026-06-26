@@ -1,0 +1,1 @@
+vault_cluster_secret: #copy paste the output of this command ---> ansible-vault encrypt_string --vault-id cluster_dev@prompt '<secret_cluster>' --name 'ipfs_cluster_secret'

@@ -5,6 +5,6 @@ ipfs_cluster_fd_max: 10000 # max number of simultaneous network connections and 
 ipfs_cluster_consensus: crdt
 ipfs_cluster_replication_factor_min: 2
 ipfs_cluster_replication_factor_max: 3
-ipfs_cluster_enable_stats: false # this parameter enables or disables statistics collection by IPFS Cluster.
+ipfs_cluster_enable_stats: true #this parameter enables or disables statistics collection by IPFS Cluster.
 ipfs_cluster_group_tag: "default"
 ipfs_cluster_secret: "{{ vault_cluster_secret }}"
