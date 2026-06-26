@@ -91,5 +91,16 @@
       "cors_allow_credentials": false,
       "cors_max_age": "0s"
     }
+  },
+  "ipfs_connector": {
+    "ipfshttp": {
+      "node_multiaddress": "/ip4/127.0.0.1/tcp/5001",
+      "connect_swarms_delay": "30s",
+      "ipfs_request_timeout": "5m0s",
+      "pin_timeout": "2m0s",
+      "unpin_timeout": "3h0m0s",
+      "repogc_timeout": "24h0m0s",
+      "unpin_disable": false
+    }
   }
 }
