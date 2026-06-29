@@ -171,7 +171,7 @@
     - { key: 'Swarm', value: ["/ip4/0.0.0.0/tcp/4001", "/ip4/0.0.0.0/udp/4001/quic", "/ip4/0.0.0.0/udp/4001/quic-v1", "/ip6/::/tcp/4001", "/ip6/::/udp/4001/quic", "/ip6/::/udp/4001/quic-v1"] }
   notify: restart IPFS
 
-  - name: Disable AutoConf and Public Features for Private Network
+- name: Disable AutoConf and Public Features for Private Network
   become: yes
   become_user: ipfs
   command: "ipfs config {{ item.key }} '{{ item.value | to_json  }}' --json"
