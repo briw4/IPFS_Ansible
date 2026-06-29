@@ -1,0 +1,6 @@
+- name: Create alertmanager system user
+  become: yes
+  user:
+    name: "{{ alertmanager_user }}"
+    system: yes
+    shell: /usr/sbin/nologin
